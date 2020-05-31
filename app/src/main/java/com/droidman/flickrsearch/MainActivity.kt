@@ -1,8 +1,8 @@
 package com.droidman.flickrsearch
 
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
 import android.widget.ProgressBar
@@ -46,6 +46,8 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
 
         val photosObserver = Observer<List<Photo>> { photos ->
             photosAdapter.submitList(photos)
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+            supportActionBar?.setDisplayShowHomeEnabled(true)
             supportActionBar?.title = "results for $searchString"
             searchingTextView.visibility = View.GONE
             searchingProgressBar.visibility = View.GONE
@@ -60,6 +62,19 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
         searchView = searchItem.actionView as SearchView
         searchView.setOnQueryTextListener(this)
         return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(item.itemId == android.R.id.home) {
+            flickrLogoTextView.visibility = View.VISIBLE
+            flickrLogoImageView.visibility = View.VISIBLE
+            photosListView.visibility = View.GONE
+            photosRepository.clearData()
+            supportActionBar?.title = resources.getString(R.string.app_name)
+            supportActionBar?.setDisplayHomeAsUpEnabled(false)
+            supportActionBar?.setDisplayShowHomeEnabled(false)
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onQueryTextSubmit(query: String): Boolean {
@@ -77,7 +92,6 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
     }
 
     override fun onQueryTextChange(newText: String): Boolean {
-        Log.e(MainActivity::class.java.simpleName, newText)
         return false
     }
 

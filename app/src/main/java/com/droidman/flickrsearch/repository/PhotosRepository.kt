@@ -31,4 +31,8 @@ class PhotosRepository {
         })
     }
 
+    fun clearData() {
+        _photosList.value = null
+    }
+
 }
