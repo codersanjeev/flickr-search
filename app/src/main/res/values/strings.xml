@@ -1,4 +1,8 @@
 <resources>
-    <string name="app_name">FlickrSearch</string>
+    <string name="app_name">Flickr Search</string>
     <string name="search_title">Search</string>
+    <string name="text_loading">Loading</string>
+    <string name="text_find_your_inspiration">Find your inspiration</string>
+    <string name="text_flickr_logo_image">Flickr Logo Image</string>
+    <string name="search_result_item_image">Search result item image</string>
 </resources>

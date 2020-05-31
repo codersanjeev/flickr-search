@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="zero_dp">0dp</dimen>
+    <dimen name="two_dp">2dp</dimen>
+    <dimen name="sixteen_dp">16dp</dimen>
+    <dimen name="two_four_dp">24dp</dimen>
+    <dimen name="two_five_zero_dp">250dp</dimen>
+    <dimen name="flickr_text_size">36sp</dimen>
+    <dimen name="four_dp">4dp</dimen>
+</resources>
