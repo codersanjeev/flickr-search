@@ -1,5 +1,6 @@
 package com.droidman.flickrsearch.api
 
+import com.droidman.flickrsearch.utils.Constants
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -8,14 +9,14 @@ import retrofit2.http.Query
 
 fun createFlickrImageSearchService() : FlickrImageSearchService {
     val retrofit = Retrofit.Builder()
-        .baseUrl("https://www.flickr.com")
+        .baseUrl(Constants.BASE_URL)
         .addConverterFactory(MoshiConverterFactory.create())
         .build()
     return retrofit.create(FlickrImageSearchService::class.java)
 }
 
 interface FlickrImageSearchService {
-    @GET("/services/rest/?method=flickr.photos.search")
+    @GET(Constants.SEARCH_IMAGES_ENDPOINT)
     fun searchFlickrImages(
         @Query(value = "api_key") apiKey : String,
         @Query(value = "text") searchText: String,
