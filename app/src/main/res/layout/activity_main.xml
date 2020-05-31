@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".FlickrMainActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/photos_list_view"
+        android:id="@+id/flickr_images_list_view"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="2dp"
@@ -42,7 +42,7 @@
         app:layout_constraintTop_toBottomOf="@+id/searching_progress_bar" />
 
     <ImageView
-        android:id="@+id/flickr_logo_image_view"
+        android:id="@+id/flickr_image_view"
         android:layout_width="250dp"
         android:layout_height="250dp"
         android:layout_marginStart="24dp"
@@ -55,7 +55,7 @@
         app:srcCompat="@drawable/flickr_logo" />
 
     <TextView
-        android:id="@+id/flickr_header_text_view"
+        android:id="@+id/flickr_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -64,6 +64,6 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/flickr_logo_image_view" />
+        app:layout_constraintTop_toBottomOf="@+id/flickr_image_view" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

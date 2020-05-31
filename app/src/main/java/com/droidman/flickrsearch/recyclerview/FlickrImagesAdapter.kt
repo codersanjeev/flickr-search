@@ -9,7 +9,7 @@ import com.droidman.flickrsearch.api.Photo
 import com.droidman.flickrsearch.utils.Constants
 import com.droidman.flickrsearch.utils.Utility
 
-class PhotosAdapter() : ListAdapter<Photo, PhotoViewHolder>(DIFF_CONFIG) {
+class FlickrImagesAdapter() : ListAdapter<Photo, PhotoViewHolder>(DIFF_CONFIG) {
 
     companion object {
         val DIFF_CONFIG = object : DiffUtil.ItemCallback<Photo>() {
