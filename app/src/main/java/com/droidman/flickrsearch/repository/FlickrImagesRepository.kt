@@ -4,35 +4,34 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.droidman.flickrsearch.BuildConfig
-import com.droidman.flickrsearch.FlickrMainActivity
-import com.droidman.flickrsearch.api.FlickrPhotoSearchResults
-import com.droidman.flickrsearch.api.Photo
-import com.droidman.flickrsearch.api.createFlickrPhotoSearchService
+import com.droidman.flickrsearch.api.FlickrImageSearchResults
+import com.droidman.flickrsearch.api.Image
+import com.droidman.flickrsearch.api.createFlickrImageSearchService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class FlickrImagesRepository {
 
-    private val _photosList = MutableLiveData<List<Photo>>()
-    val photosList: LiveData<List<Photo>> = _photosList
+    private val _flickrImagesList = MutableLiveData<List<Image>>()
+    val flickrImagesList: LiveData<List<Image>> = _flickrImagesList
 
-    fun getPhotos(searchText: String) {
-        val call = createFlickrPhotoSearchService().searchPhotos(BuildConfig.FLICKR_API_KEY, searchText)
-        call.enqueue(object : Callback<FlickrPhotoSearchResults> {
-            override fun onFailure(call: Call<FlickrPhotoSearchResults>, t: Throwable) {
-                Log.e(FlickrMainActivity::class.java.simpleName, "error loading", t)
+    fun getFlickrImagesResult(searchText: String) {
+        val call = createFlickrImageSearchService().searchFlickrImages(BuildConfig.FLICKR_API_KEY, searchText)
+        call.enqueue(object : Callback<FlickrImageSearchResults> {
+
+            override fun onFailure(call: Call<FlickrImageSearchResults>, t: Throwable) {
+                Log.e(FlickrImagesRepository::class.java.simpleName, "something went wrong" + t.message)
             }
-            override fun onResponse(call: Call<FlickrPhotoSearchResults>, response: Response<FlickrPhotoSearchResults>) {
-                val results = response.body()
-                val photos = results?.photos?.photo
-                _photosList.value = photos
+
+            override fun onResponse(call: Call<FlickrImageSearchResults>, response: Response<FlickrImageSearchResults>) {
+                _flickrImagesList.value = response.body()?.photos?.photo
             }
+
         })
     }
 
     fun clearData() {
-        _photosList.value = null
+        _flickrImagesList.value = null
     }
-
 }

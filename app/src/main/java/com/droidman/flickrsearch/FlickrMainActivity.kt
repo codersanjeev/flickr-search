@@ -1,6 +1,5 @@
 package com.droidman.flickrsearch
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -13,7 +12,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.droidman.flickrsearch.api.Photo
+import com.droidman.flickrsearch.api.Image
 import com.droidman.flickrsearch.recyclerview.FlickrImagesAdapter
 import com.droidman.flickrsearch.repository.FlickrImagesRepository
 import com.droidman.flickrsearch.utils.Constants
@@ -42,7 +41,7 @@ class FlickrMainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
     }
 
     override fun onDestroy() {
-        flickrImagesRepository.photosList.removeObservers(this)
+        flickrImagesRepository.flickrImagesList.removeObservers(this)
         super.onDestroy()
     }
 
@@ -63,7 +62,7 @@ class FlickrMainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
     override fun onQueryTextSubmit(query: String): Boolean {
         flickrQueryString = query
         hideRecyclerViewAndShowProgressBar()
-        flickrImagesRepository.getPhotos(query)
+        flickrImagesRepository.getFlickrImagesResult(query)
         flickrImagesSearchingTextView.text = "looking for $query"
         flickrSearchView.setQuery("", false)
         flickrSearchView.isIconified = true
@@ -83,20 +82,20 @@ class FlickrMainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
     }
 
     private fun setupRecyclerView() {
-        val flickrImagesPerRow = if (Utility.isLandscape(this)) Constants.IMAGES_PER_ROW_IN_LANDSCAPE else Constants.IMAGES_PER_ROW_IN_PORTRAIT
+        val flickrImagesPerRow = if (Utility.isLandscapeMode(this)) Constants.IMAGES_PER_ROW_IN_LANDSCAPE else Constants.IMAGES_PER_ROW_IN_PORTRAIT
         flickrImagesRecyclerView.layoutManager = GridLayoutManager(this, flickrImagesPerRow)
         flickrImagesRecyclerView.adapter = flickrImagesAdapter
     }
 
     private fun setupObservers() {
-        val flickrImagesObserver = Observer<List<Photo>> { photos ->
-            flickrImagesAdapter.submitList(photos)
+        val flickrImagesObserver = Observer<List<Image>> { images ->
+            flickrImagesAdapter.submitList(images)
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
             supportActionBar?.setDisplayShowHomeEnabled(true)
             supportActionBar?.title = "results for $flickrQueryString"
             showRecyclerView()
         }
-        flickrImagesRepository.photosList.observe(this, flickrImagesObserver)
+        flickrImagesRepository.flickrImagesList.observe(this, flickrImagesObserver)
     }
 
     private fun showRecyclerView() {

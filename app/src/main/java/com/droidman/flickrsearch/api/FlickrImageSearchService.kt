@@ -6,21 +6,20 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-fun createFlickrPhotoSearchService() : FlickrPhotoSearchService {
+fun createFlickrImageSearchService() : FlickrImageSearchService {
     val retrofit = Retrofit.Builder()
         .baseUrl("https://www.flickr.com")
         .addConverterFactory(MoshiConverterFactory.create())
         .build()
-
-    return retrofit.create(FlickrPhotoSearchService::class.java)
+    return retrofit.create(FlickrImageSearchService::class.java)
 }
 
-interface FlickrPhotoSearchService {
+interface FlickrImageSearchService {
     @GET("/services/rest/?method=flickr.photos.search")
-    fun searchPhotos(
+    fun searchFlickrImages(
         @Query(value = "api_key") apiKey : String,
         @Query(value = "text") searchText: String,
         @Query(value = "format") json : String = "json",
         @Query(value = "nojsoncallback") callback: String = "1"
-    ) : Call<FlickrPhotoSearchResults>
+    ) : Call<FlickrImageSearchResults>
 }

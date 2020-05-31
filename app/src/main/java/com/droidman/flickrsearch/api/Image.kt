@@ -1,6 +1,6 @@
 package com.droidman.flickrsearch.api
 
-data class Photo(
+data class Image(
     val farm: Int,
     val id: String,
     val isfamily: Int,

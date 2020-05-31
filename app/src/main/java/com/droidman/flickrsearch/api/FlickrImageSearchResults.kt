@@ -1,6 +1,6 @@
 package com.droidman.flickrsearch.api
 
-data class FlickrPhotoSearchResults(
-    val photos: Photos,
+data class FlickrImageSearchResults(
+    val photos: Images,
     val stat: String
 )
