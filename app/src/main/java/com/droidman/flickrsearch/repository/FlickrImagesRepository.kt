@@ -21,6 +21,10 @@ class FlickrImagesRepository {
     private val _flickrImagesList = MutableLiveData<List<Image>>()
     val flickrImagesList: LiveData<List<Image>> = _flickrImagesList
 
+    /**
+     * searches for images using input text as parameter and
+     * populates the flickrImagesList
+     */
     fun getFlickrImagesResult(searchText: String) {
         val call = createFlickrImageSearchService().searchFlickrImages(BuildConfig.FLICKR_API_KEY, searchText)
         call.enqueue(object : Callback<FlickrImageSearchResults> {
