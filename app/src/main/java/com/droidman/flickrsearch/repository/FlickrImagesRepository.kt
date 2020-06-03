@@ -12,6 +12,10 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.util.*
 
+/**
+ * gets images from the API using FlickrImageSearchService and
+ * stores it in local variable list
+ */
 class FlickrImagesRepository {
 
     private val _flickrImagesList = MutableLiveData<List<Image>>()
@@ -32,6 +36,9 @@ class FlickrImagesRepository {
         })
     }
 
+    /**
+     * removes all images from the repository
+     */
     fun clearData() {
         _flickrImagesList.value = null
     }

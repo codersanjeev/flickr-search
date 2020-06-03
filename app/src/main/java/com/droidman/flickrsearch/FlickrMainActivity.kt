@@ -18,6 +18,9 @@ import com.droidman.flickrsearch.repository.FlickrImagesRepository
 import com.droidman.flickrsearch.utils.Constants
 import com.droidman.flickrsearch.utils.Utility
 
+/**
+ * Main activity of the application
+ */
 class FlickrMainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
 
     private lateinit var flickrSearchView : SearchView

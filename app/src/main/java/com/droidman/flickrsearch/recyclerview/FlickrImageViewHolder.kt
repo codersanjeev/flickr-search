@@ -7,10 +7,16 @@ import coil.api.load
 import com.droidman.flickrsearch.R
 import com.droidman.flickrsearch.api.Image
 
+/**
+ * single image view holder
+ */
 class FlickrImageViewHolder(view : View) : RecyclerView.ViewHolder(view) {
 
     private val flickrImageView = view.findViewById<ImageView>(R.id.image_view)
 
+    /**
+     * populates data in a image cell
+     */
     fun bind(image : Image) {
         val flickrImageUrl = "http://farm${image.farm}.static.flickr.com/${image.server}/${image.id}_${image.secret}.jpg"
         flickrImageView.load(flickrImageUrl)

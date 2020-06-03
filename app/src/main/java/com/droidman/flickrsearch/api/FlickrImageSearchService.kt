@@ -7,6 +7,9 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
 
+/**
+ * build flickr image search service
+ */
 fun createFlickrImageSearchService() : FlickrImageSearchService {
     val retrofit = Retrofit.Builder()
         .baseUrl(Constants.BASE_URL)
@@ -15,7 +18,13 @@ fun createFlickrImageSearchService() : FlickrImageSearchService {
     return retrofit.create(FlickrImageSearchService::class.java)
 }
 
+/**
+ * all available endpoints from flickr API
+ */
 interface FlickrImageSearchService {
+    /**
+     * search image using given text endpoint
+     */
     @GET(Constants.SEARCH_IMAGES_ENDPOINT)
     fun searchFlickrImages(
         @Query(value = "api_key") apiKey : String,
