@@ -30,7 +30,7 @@ class FlickrMainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
     private var flickrImagesAdapter = FlickrImagesAdapter()
     private var flickrImagesRepository = FlickrImagesRepository()
 
-    private var flickrQueryString = "default query"
+    private var flickrQueryString = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
