@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/details_image_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/share_image_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+    <ImageButton
+        android:id="@+id/share_image_button"
+        android:layout_width="70dp"
+        android:layout_height="0dp"
+        android:background="@color/colorPrimary"
+        android:onClick="shareImage"
+        android:scaleType="centerInside"
+        android:src="?attr/actionModeShareDrawable"
+        android:tint="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/download_image_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="?attr/actionModeShareDrawable" />
+
+    <ImageButton
+        android:id="@+id/download_image_button"
+        android:layout_width="70dp"
+        android:layout_height="0dp"
+        android:background="@color/colorPrimary"
+        android:onClick="downloadImage"
+        android:scaleType="centerInside"
+        android:src="@android:drawable/stat_sys_download_done"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/share_image_button"
+        tools:src="@android:drawable/stat_sys_download_done" />
+</androidx.constraintlayout.widget.ConstraintLayout>

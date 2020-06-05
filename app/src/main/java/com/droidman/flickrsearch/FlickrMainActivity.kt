@@ -1,27 +1,33 @@
 package com.droidman.flickrsearch
 
+import android.content.Intent
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.droidman.flickrsearch.api.Image
 import com.droidman.flickrsearch.recyclerview.FlickrImagesAdapter
 import com.droidman.flickrsearch.repository.FlickrImagesRepository
 import com.droidman.flickrsearch.utils.Constants
 import com.droidman.flickrsearch.utils.Utility
+import com.droidman.flickrsearch.view.FlickrImageDetailsActivity
+import com.droidman.flickrsearch.view.OnImageClick
 
 /**
  * Main activity of the application
  */
-class FlickrMainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
+class FlickrMainActivity : AppCompatActivity(), SearchView.OnQueryTextListener, OnImageClick {
 
     private lateinit var flickrSearchView : SearchView
     private lateinit var flickrImagesSearchingProgressBar : ProgressBar
@@ -30,7 +36,7 @@ class FlickrMainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
     private lateinit var flickrImageView : ImageView
     private lateinit var flickrImagesRecyclerView : RecyclerView
 
-    private var flickrImagesAdapter = FlickrImagesAdapter()
+    private lateinit var flickrImagesAdapter : FlickrImagesAdapter
     private var flickrImagesRepository = FlickrImagesRepository()
 
     private var flickrQueryString = ""
@@ -87,6 +93,7 @@ class FlickrMainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
     private fun setupRecyclerView() {
         val flickrImagesPerRow = if (Utility.isLandscapeMode(this)) Constants.IMAGES_PER_ROW_IN_LANDSCAPE else Constants.IMAGES_PER_ROW_IN_PORTRAIT
         flickrImagesRecyclerView.layoutManager = GridLayoutManager(this, flickrImagesPerRow)
+        flickrImagesAdapter = FlickrImagesAdapter(this)
         flickrImagesRecyclerView.adapter = flickrImagesAdapter
     }
 
@@ -125,6 +132,13 @@ class FlickrMainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
         supportActionBar?.title = resources.getString(R.string.app_name)
         supportActionBar?.setDisplayHomeAsUpEnabled(false)
         supportActionBar?.setDisplayShowHomeEnabled(false)
+    }
+
+    override fun onImageClicked(image: Image) {
+        val intent = Intent(this, FlickrImageDetailsActivity::class.java).apply {
+            putExtra(Constants.IMAGE_DETAILS_KEY, image)
+        }
+        startActivity(intent)
     }
 
 }

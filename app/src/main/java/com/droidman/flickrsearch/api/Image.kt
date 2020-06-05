@@ -1,5 +1,7 @@
 package com.droidman.flickrsearch.api
 
+import java.io.Serializable
+
 /**
  * data class for JSON response mapping
  */
@@ -13,4 +15,4 @@ data class Image(
     val secret: String,
     val server: String,
     val title: String
-)
+) : Serializable

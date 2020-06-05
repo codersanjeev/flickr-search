@@ -8,11 +8,12 @@ import com.droidman.flickrsearch.R
 import com.droidman.flickrsearch.api.Image
 import com.droidman.flickrsearch.utils.Constants
 import com.droidman.flickrsearch.utils.Utility
+import com.droidman.flickrsearch.view.OnImageClick
 
 /**
  * List adapter for Image Search Results
  */
-class FlickrImagesAdapter : ListAdapter<Image, FlickrImageViewHolder>(DIFF_CONFIG) {
+class FlickrImagesAdapter(val imageClickListener : OnImageClick) : ListAdapter<Image, FlickrImageViewHolder>(DIFF_CONFIG) {
 
     companion object {
         val DIFF_CONFIG = object : DiffUtil.ItemCallback<Image>() {
@@ -38,6 +39,6 @@ class FlickrImagesAdapter : ListAdapter<Image, FlickrImageViewHolder>(DIFF_CONFI
     }
 
     override fun onBindViewHolder(holder: FlickrImageViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        holder.bind(getItem(position), imageClickListener)
     }
 }
