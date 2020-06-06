@@ -8,7 +8,7 @@
 This repository contains the Flickr Search Android App made during [30 Days of Kotlin](https://eventsonair.withgoogle.com/events/kotlin) program.
 
 ## Download
-Download and install apk from [here](http://github.com/thedevelopersanjeev)
+Download and install apk from [here](https://github.com/thedevelopersanjeev/flickr-search/raw/master/apk/flickr-search.apk)
 
 ## Screenshots
 
