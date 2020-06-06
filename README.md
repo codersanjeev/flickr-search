@@ -7,3 +7,20 @@
 
 This repository contains the Flickr Search Android App made during [30 Days of Kotlin](https://eventsonair.withgoogle.com/events/kotlin) program.
 
+## Screenshots
+
+<table>
+    <tr>
+       <td><img src="/screenshots/portrait_1.png"></td>
+       <td><img src="/screenshots/portrait_2.png"></td>
+       <td><img src="/screenshots/portrait_3.png"></td>
+       <td><img src="/screenshots/portrait_4.png"></td>
+    </tr>
+</table>
+<table>
+    <tr>
+        <td><img src="/screenshots/landscape_1.png"></td>
+        <td><img src="/screenshots/landscape_2.png"></td>
+        <td><img src="/screenshots/landscape_3.png"></td>
+    </tr>
+</table>

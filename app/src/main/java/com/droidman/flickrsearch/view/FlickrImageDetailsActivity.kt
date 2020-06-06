@@ -19,6 +19,9 @@ import com.droidman.flickrsearch.utils.Constants
 import com.droidman.flickrsearch.utils.Utility
 import okhttp3.internal.Util
 
+/**
+ * Activity for displaying details of an image
+ */
 class FlickrImageDetailsActivity : AppCompatActivity() {
 
     private lateinit var image : Image
@@ -32,8 +35,12 @@ class FlickrImageDetailsActivity : AppCompatActivity() {
         downloadButton = findViewById(R.id.download_image_button)
         image = intent.extras?.get(Constants.IMAGE_DETAILS_KEY) as Image
         detailsImageView.load(Utility.getImageURL(image))
+        supportActionBar?.title = image.title
     }
 
+    /**
+     * share button on click handler
+     */
     fun shareImage(view: View) {
         val imageUrl = Utility.getImageURL(image)
         val intent : Intent = Intent().apply {
@@ -44,6 +51,9 @@ class FlickrImageDetailsActivity : AppCompatActivity() {
         startActivity(Intent.createChooser(intent, "Share Image"))
     }
 
+    /**
+     * download button on click handler
+     */
     fun downloadImage(view: View) {
         val imageUrl = Utility.getImageURL(image)
         val downloadManager = getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
@@ -58,6 +68,7 @@ class FlickrImageDetailsActivity : AppCompatActivity() {
             setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
             Toast.makeText(this@FlickrImageDetailsActivity, "downloading image...", Toast.LENGTH_LONG).show()
             downloadManager.enqueue(this)
+            // disable download button to prevent multiple downloads of same image
             downloadButton.isEnabled = false
         }
     }

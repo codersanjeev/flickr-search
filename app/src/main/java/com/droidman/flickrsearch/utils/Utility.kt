@@ -16,6 +16,9 @@ class Utility {
             return context.resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
         }
 
+        /**
+         * creates and return image url from image object
+         */
         fun getImageURL(image : Image) : String {
             return "http://farm${image.farm}.static.flickr.com/${image.server}/${image.id}_${image.secret}.jpg"
         }
